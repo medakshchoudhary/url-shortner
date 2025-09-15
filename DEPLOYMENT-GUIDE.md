@@ -14,8 +14,9 @@ JWT_SECRET=your-super-secure-jwt-secret-key-here   # Generate a secure random st
 ### 🔧 **Frontend Environment Variables (.env.production):**
 
 ```bash
-# Replace with your deployed backend URL:
-VITE_API_BASE_URL=https://your-backend-domain.com  # Your deployed backend URL (no trailing slash)
+# Replace with your deployed URLs:
+VITE_API_BASE_URL=https://your-backend-domain.com   # Your deployed backend URL (no trailing slash)
+VITE_FRONTEND_URL=https://your-frontend-domain.com  # Your deployed frontend URL (no trailing slash)
 ```
 
 ---
