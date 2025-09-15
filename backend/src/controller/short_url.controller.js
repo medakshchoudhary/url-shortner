@@ -10,11 +10,10 @@ export const createShortUrl = wrapAsync(async (req,res)=>{
     }else{  
         shortUrl = await createShortUrlWithoutUser(data.url)
     }
-    // Return the short code and let frontend construct display URL
-    res.status(200).json({
-        shortUrl: shortUrl, // Just the short code (e.g., "abc123")
-        redirectUrl: `${process.env.APP_URL.endsWith('/') ? process.env.APP_URL : process.env.APP_URL + '/'}${shortUrl}` // Backend URL for actual redirection
-    })
+    // Return frontend URL so users see frontend domain
+    const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173'
+    const frontendShortUrl = `${frontendUrl}/${shortUrl}`
+    res.status(200).json({shortUrl: frontendShortUrl})
 })
 
 
@@ -28,9 +27,8 @@ export const redirectFromShortUrl = wrapAsync(async (req,res)=>{
 export const createCustomShortUrl = wrapAsync(async (req,res)=>{
     const {url,slug} = req.body
     const shortUrl = await createShortUrlWithoutUser(url,slug)
-    // Return the short code and redirect URL
-    res.status(200).json({
-        shortUrl: shortUrl, // Just the short code
-        redirectUrl: `${process.env.APP_URL.endsWith('/') ? process.env.APP_URL : process.env.APP_URL + '/'}${shortUrl}` // Backend URL for actual redirection
-    })
+    // Return frontend URL so users see frontend domain
+    const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173'
+    const frontendShortUrl = `${frontendUrl}/${shortUrl}`
+    res.status(200).json({shortUrl: frontendShortUrl})
 })

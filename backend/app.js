@@ -22,16 +22,8 @@ const app = express();
 
 app.use(cors({
     origin: process.env.NODE_ENV === 'production' 
-        ? (origin, callback) => {
-            // Allow requests from any HTTPS origin in production
-            // You can also specify an array of allowed domains if needed
-            if (!origin || origin.startsWith('https://')) {
-              callback(null, true);
-            } else {
-              callback(new Error('Not allowed by CORS'));
-            }
-          }
-        : 'http://localhost:5173', // Only localhost in development
+        ? [process.env.FRONTEND_URL, /\.vercel\.app$/, /\.netlify\.app$/, /\.onrender\.com$/]
+        : ['http://localhost:5173', 'http://localhost:3000'],
     credentials: true // 👈 this allows cookies to be sent
 }));
 

@@ -7,8 +7,8 @@
 ```bash
 # Replace these with your actual deployment URLs:
 APP_URL=https://your-backend-domain.com/           # Your deployed backend URL
+FRONTEND_URL=https://your-frontend-domain.com      # Your deployed frontend URL (for short URL generation)
 JWT_SECRET=your-super-secure-jwt-secret-key-here   # Generate a secure random string
-# Note: No FRONTEND_URL needed - CORS allows any HTTPS origin in production
 ```
 
 ### 🔧 **Frontend Environment Variables (.env.production):**
