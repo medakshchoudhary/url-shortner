@@ -5,9 +5,11 @@ const RedirectPage = () => {
   const { shortCode } = useParams();
 
   useEffect(() => {
-    // Redirect to backend URL for actual redirection
-    const backendUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
-    window.location.href = `${backendUrl}/${shortCode}`;
+    if (shortCode) {
+      // Redirect to backend URL for actual redirection
+      const backendUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000/';
+      window.location.replace(`${backendUrl}${shortCode}`);
+    }
   }, [shortCode]);
 
   return (
